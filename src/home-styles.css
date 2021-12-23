@@ -1,0 +1,45 @@
+/* font for the website use */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Yuji+Hentaigana+Akebono&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+/* styling of the navigation bar */
+
+.logo-text {
+    font-family: 'Yuji Hentaigana Akebono', cursive;
+    font-weight: 400;
+    font-size: 2em;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-links li {
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid brown;
+    align-items: center;
+    padding: 4px 96px;
+}

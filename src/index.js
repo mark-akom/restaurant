@@ -1,1 +1,1 @@
-alert('Welcome to my restaurant');
+// alert('Welcome to my restaurant');
