@@ -17,12 +17,14 @@ ul {
     list-style: none;
 }
 
+
 /* styling of the navigation bar */
 
 .logo-text {
     font-family: 'Yuji Hentaigana Akebono', cursive;
     font-weight: 400;
     font-size: 2em;
+    color: white;
 }
 
 .nav-links {
@@ -34,14 +36,16 @@ ul {
 .nav-links li {
     font-size: 1.1em;
     font-weight: 400;
+    color: white;
+    cursor: pointer;
 }
 
 .top-navbar {
     display: flex;
     justify-content: space-between;
-    border: 1px solid brown;
     align-items: center;
     padding: 4px 108px;
+    background-color: black;
 }
 
 /* styling of the intro section */
@@ -94,3 +98,56 @@ ul {
     gap: 12px;
     padding-bottom: 8px;
 }
+
+/* styling of the contact section */
+
+.contact {
+    border: 1px solid;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 50%;
+    margin: auto;
+    border-radius: 8px;
+}
+
+.contact h2 {
+    font-weight: 600;
+    font-size: 2em;
+}
+
+.contact-list {
+    display: flex;
+    gap: 20px;
+}
+
+.contact-list p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.15em;
+}
+
+.social {
+    display: flex;
+    gap: 10px;
+}
+
+.social a {
+    display: block;
+    color: black;
+    font-size: 1.6em;
+}
+
+/* styling of the footer section */
+
+.footer {
+    text-align: center;
+    padding: 12px 0;
+    margin-top: 80px;
+    background-color: black;
+    color: white;
+}
+
