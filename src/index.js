@@ -8,6 +8,36 @@ function buildNavigationBar() {
     logoText.textContent = `Koby's Restaurant`;
     const navLinks = document.createElement('ul');
 
+    navLinks.addEventListener('click', function(e) {
+        const elm = e.target;
+        if( elm.tagName === 'LI') {
+            console.log(elm.textContent);
+            const pageContents = Array.from(content.children)
+
+            for (let i = 0; i < pageContents.length; i++) {
+                content.removeChild(pageContents[i]);
+            }
+
+            // check which to render
+
+            if (elm.textContent === 'Home') {
+                content.appendChild(buildNavigationBar());
+                content.appendChild(buildIntro());
+                content.appendChild(buildContact());
+                content.appendChild(buildFooter());
+ 
+            } else if (elm.textContent === 'Menu') {
+                content.appendChild(buildNavigationBar());
+                
+                content.appendChild(buildFooter());
+            } else {
+                content.appendChild(buildNavigationBar());
+                
+                content.appendChild(buildFooter());
+            }
+        }
+    })
+
     // add all the necessary styles
     navBar.classList.add('top-navbar');
     logoText.classList.add('logo-text');
@@ -50,16 +80,4 @@ function buildFooter() {
     content.appendChild(buildIntro());
     content.appendChild(buildContact());
     content.appendChild(buildFooter());
-
-
-    // setup the event listeners for the links
-    const ul = document.querySelector('nav-links');
-
-    ul.addEventListener('click', function(e) {
-        const elm = e.target;
-
-        if( elm.tagName === 'LI') {
-            console.log(elm);
-        }
-    })
 })()
