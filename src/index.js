@@ -1,6 +1,7 @@
 import { buildIntro, buildContact } from "./home";
 import buildAboutUs from "./about";
 import buildMenu from "./menu";
+import './home-styles.css';
 
 const content = document.querySelector('#content');
 
