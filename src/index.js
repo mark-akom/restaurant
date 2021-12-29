@@ -13,7 +13,6 @@ function buildNavigationBar() {
     navLinks.addEventListener('click', function(e) {
         const elm = e.target;
         if( elm.tagName === 'LI') {
-            console.log(elm.textContent);
             const pageContents = Array.from(content.children)
 
             for (let i = 0; i < pageContents.length; i++) {
@@ -24,21 +23,14 @@ function buildNavigationBar() {
 
             if (elm.textContent === 'Home') {
                 document.title = `Koby's Restaurant Project`;
-                content.appendChild(buildNavigationBar());
-                content.appendChild(buildIntro());
-                content.appendChild(buildContact());
-                content.appendChild(buildFooter());
+                renderPage([buildIntro, buildContact]);
  
             } else if (elm.textContent === 'Menu') {
                 document.title = 'Our Menu - Koby\'s Restaurant';
-                content.appendChild(buildNavigationBar());
-                content.appendChild(buildMenu());
-                content.appendChild(buildFooter());
+                renderPage([buildMenu]);
             } else {
                 document.title = `About Us - Koby's Restaurant`;
-                content.appendChild(buildNavigationBar());
-                content.appendChild(buildAboutUs());
-                content.appendChild(buildFooter());
+                renderPage([buildAboutUs])
             }
         }
     })
@@ -68,7 +60,7 @@ function buildFooter() {
     const footer = document.createElement('div')
     footer.classList.add('footer');
     const copyright = document.createElement('p');
-    copyright.textContent = `CopyRight &copy; 2021`;
+    copyright.innerHTML = `CopyRight &copy; ${new Date().getFullYear()}`;
     const logoText = document.createElement('h2');
     logoText.textContent = `Koby's Restaurant`;
     logoText.classList.add('logo-text');
@@ -80,9 +72,14 @@ function buildFooter() {
     return footer;
 }
 
-(function(){
+function renderPage(elements) {
     content.appendChild(buildNavigationBar());
-    content.appendChild(buildIntro());
-    content.appendChild(buildContact());
+    elements.forEach(elem => {
+        content.appendChild(elem());
+    });
     content.appendChild(buildFooter());
+}
+
+(function(){
+    renderPage([buildIntro, buildContact]);
 })()

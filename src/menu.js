@@ -15,6 +15,10 @@ function buldFilterBtn() {
         const btn = document.createElement('button');
         btn.classList.add('filter-btn');
         btn.textContent = item;
+        if (item === 'all') {
+            btn.classList.add('active');
+        }
+        btn.addEventListener('click', handleFilter);
         btnGroup.appendChild(btn);
     });
 
@@ -22,19 +26,34 @@ function buldFilterBtn() {
 
 }
 
-function buildMenu() {
-    
-    // create the dom elements for the menu page
-    const menuSection = document.createElement('div');
-    menuSection.classList.add('menu-section');
+function handleFilter() {
+    const elem = this;
+    const menuItemsContainer = document.querySelector('.menu-items');
+    const btnGroup = document.querySelector('.btn-group');
+    // delete all the menu items befor building a new menu
+    Array.from(menuItemsContainer.childNodes).forEach(item => {
+        menuItemsContainer.removeChild(item);
+    });
 
-    const menuHeading = document.createElement('h1');
-    menuHeading.classList.add('menu-heading');
+    Array.from(btnGroup.childNodes).map(btn => {
+        if (btn.classList.contains('active')) {
+            btn.classList.remove('active');
+        }
+    })
 
-    const menuItems = document.createElement('div');
-    menuItems.classList.add('menu-items');
+    if (elem.textContent === 'all') {
+        buildMenuItems(data, menuItemsContainer);
+        elem.classList.add('active');
+    } else {
+        const filtered = data.filter(item => item.category === elem.textContent);
+        buildMenuItems(filtered, menuItemsContainer);
+        elem.classList.add('active');
+    }
 
-    data.forEach(item => {
+}
+
+function buildMenuItems(menuData, menuItemsContainer) {
+    menuData.forEach(item => {
 
         const menuItem = document.createElement('div');
         menuItem.classList.add('menu-item');
@@ -69,13 +88,26 @@ function buildMenu() {
     
         imgHolder.appendChild(menuImg);
     
-    
         menuItem.appendChild(imgHolder);
         menuItem.appendChild(menuDetails);
-    
-        menuItems.appendChild(menuItem);
+        
+        menuItemsContainer.appendChild(menuItem);
     });
+}
 
+function buildMenu() {
+    
+    // create the dom elements for the menu page
+    const menuSection = document.createElement('div');
+    menuSection.classList.add('menu-section');
+
+    const menuHeading = document.createElement('h1');
+    menuHeading.classList.add('menu-heading');
+
+    const menuItems = document.createElement('div');
+    menuItems.classList.add('menu-items');
+    
+    buildMenuItems(data, menuItems);
 
     // add the contents to the elements
     menuHeading.textContent = 'Our Menu';
