@@ -1,5 +1,6 @@
 import { buildIntro, buildContact } from "./home";
 import buildAboutUs from "./about";
+import buildMenu from "./menu";
 
 const content = document.querySelector('#content');
 
@@ -31,7 +32,7 @@ function buildNavigationBar() {
             } else if (elm.textContent === 'Menu') {
                 document.title = 'Our Menu - Koby\'s Restaurant';
                 content.appendChild(buildNavigationBar());
-                
+                content.appendChild(buildMenu());
                 content.appendChild(buildFooter());
             } else {
                 document.title = `About Us - Koby's Restaurant`;
